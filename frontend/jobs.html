@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jobs | Career Companion</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body data-page="jobs">
+    <!-- Top Header Navigation -->
+    <header class="top-nav">
+        <div class="nav-brand">
+            <span class="logo">Career Companion</span>
+        </div>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="interview.html">AI Interview</a>
+            <a href="skills.html">Skills</a>
+            <a href="jobs.html" class="active">Jobs</a>
+            <a href="learning.html">Learning</a>
+            <a href="analytics.html">Analytics</a>
+        </nav>
+        <div class="nav-right">
+            <div class="user-avatar" id="navAvatar">PB</div>
+            <button class="button secondary icon-btn" onclick="logout()" title="Log out">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="interview-page-wrapper">
+        <!-- Hero Header Banner -->
+        <section class="interview-hero-banner">
+            <div class="hero-content">
+                <h1>Job Finder & Tracker</h1>
+                <p>Find the right role, faster. Search curated openings, filter by location, and apply instantly—all from one place.</p>
+            </div>
+        </section>
+
+        <!-- Main Workspace Container -->
+        <div class="interview-container">
+            <!-- Job Search Banner Card -->
+            <section class="card-panel-box">
+                <form onsubmit="event.preventDefault(); searchJobs();">
+                    <div class="form-grid-row">
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-briefcase"></i> Job Title or Keyword</label>
+                            <input type="text" id="searchRole" placeholder="e.g. Frontend Developer, Software Engineer" />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-location-dot"></i> Location</label>
+                            <input type="text" id="searchLocation" placeholder="e.g. Bangalore, Remote, Chennai" />
+                        </div>
+                        <div class="form-group form-btn-align">
+                            <button type="submit" class="button primary large">
+                                <i class="fa-solid fa-magnifying-glass"></i> Find Jobs
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Jobs Content Workspace -->
+            <div class="jobs-layout-grid" style="margin-top: 32px;">
+                <aside class="jobs-sidebar-card">
+                    <div class="sidebar-box-section">
+                        <h3><i class="fa-solid fa-filter"></i> Categories</h3>
+                        <div class="category-links-list">
+                            <button class="cat-chip-btn active" onclick="searchJobs()">All Jobs</button>
+                            <button class="cat-chip-btn" onclick="document.getElementById('searchRole').value='Full Time'; searchJobs();">Full Time</button>
+                            <button class="cat-chip-btn" onclick="document.getElementById('searchRole').value='Remote'; searchJobs();">Remote</button>
+                            <button class="cat-chip-btn" onclick="document.getElementById('searchRole').value='Hybrid'; searchJobs();">Hybrid</button>
+                        </div>
+                    </div>
+                    <div class="sidebar-box-section">
+                        <h3><i class="fa-solid fa-sparkles"></i> Curated Openings</h3>
+                        <p style="font-size: 0.88rem; color: #64748b; margin: 0;">Verified postings from top tech employers updated daily.</p>
+                    </div>
+                </aside>
+
+                <section class="jobs-results-column">
+                    <div id="jobResults" class="job-list-grid"></div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skill Roadmap | Career Companion</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body data-page="skills">
+    <!-- Top Header Navigation -->
+    <header class="top-nav">
+        <div class="nav-brand">
+            <span class="logo">Career Companion</span>
+        </div>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="interview.html">AI Interview</a>
+            <a href="skills.html" class="active">Skills</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="learning.html">Learning</a>
+            <a href="analytics.html">Analytics</a>
+        </nav>
+        <div class="nav-right">
+            <div class="user-avatar" id="navAvatar">PB</div>
+            <button class="button secondary icon-btn" onclick="logout()" title="Log out">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="interview-page-wrapper">
+        <!-- Hero Header Banner -->
+        <section class="interview-hero-banner">
+            <div class="hero-content">
+                <h1>Skill Roadmap</h1>
+                <p>Build your best skill stack. Track the skills you are learning and create your own roadmap to improve.</p>
+            </div>
+        </section>
+
+        <!-- Main Workspace Container -->
+        <div class="interview-container">
+            <!-- Add Skill Form Card -->
+            <section class="card-panel-box">
+                <div class="panel-box-header">
+                    <h3><i class="fa-solid fa-circle-plus" style="color:#2563eb;"></i> Add New Skill</h3>
+                </div>
+                <div class="form-grid-row">
+                    <div class="form-group">
+                        <label for="skillName">Skill Name</label>
+                        <input id="skillName" type="text" placeholder="e.g. JavaScript, React, System Design" />
+                    </div>
+                    <div class="form-group">
+                        <label for="skillLevel">Target Mastery Level</label>
+                        <select id="skillLevel">
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate" selected>Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-btn-align">
+                        <button class="button primary large" onclick="addSkill()">
+                            <i class="fa-solid fa-plus"></i> Add to Roadmap
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills List Grid Section -->
+            <section class="path-header" style="margin-top: 36px;">
+                <h2>Your Tracked Skills</h2>
+                <p>Monitor your level and progress for each technical competence</p>
+            </section>
+
+            <section class="templates-grid" id="skillRoadmap">
+                <!-- Populated dynamically by app.js -->
+            </section>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

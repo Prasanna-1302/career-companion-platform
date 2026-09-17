@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Career Companion</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body data-page="dashboard">
+    <!-- Top Header Navigation -->
+    <header class="top-nav">
+        <div class="nav-brand">
+            <span class="logo">Career Companion</span>
+        </div>
+        <nav>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="interview.html">AI Interview</a>
+            <a href="skills.html">Skills</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="learning.html">Learning</a>
+            <a href="analytics.html">Analytics</a>
+        </nav>
+        <div class="nav-right">
+            <div class="user-avatar" id="navAvatar">PB</div>
+            <button class="button secondary icon-btn" onclick="logout()" title="Log out">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="interview-page-wrapper">
+        <!-- Hero Header Banner -->
+        <section class="interview-hero-banner">
+            <div class="hero-content">
+                <p class="hero-eyebrow"><i class="fa-solid fa-sun"></i> Good Day,</p>
+                <h1 id="userName">User</h1>
+                <p>Your central workspace for interview practice, skill planning, application tracking, and productivity insights.</p>
+            </div>
+        </section>
+
+        <!-- Main Workspace Container -->
+        <div class="interview-container">
+            <!-- Stats Cards Grid -->
+            <section class="stats-overview-grid">
+                <article class="stat-overview-card">
+                    <div class="stat-icon-box" style="background: #eff6ff; color: #2563eb;">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span>Applications</span>
+                        <strong id="jobCount">0</strong>
+                    </div>
+                </article>
+                <article class="stat-overview-card">
+                    <div class="stat-icon-box" style="background: #f0fdf4; color: #16a34a;">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span>Skills Tracked</span>
+                        <strong id="skillCount">0</strong>
+                    </div>
+                </article>
+                <article class="stat-overview-card">
+                    <div class="stat-icon-box" style="background: #fff7ed; color: #ea580c;">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span>Focus Streak</span>
+                        <strong id="streakCount">0</strong>
+                    </div>
+                </article>
+                <article class="stat-overview-card">
+                    <div class="stat-icon-box" style="background: #f3e8ff; color: #9333ea;">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span>Weekly Hours</span>
+                        <strong id="hoursCount">0</strong>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Quick Access Modules Grid -->
+            <section class="path-header" style="margin-top: 36px;">
+                <h2>Explore Platform Modules</h2>
+                <p>Select a workspace to accelerate your job prep, skills, and applications</p>
+            </section>
+
+            <section class="templates-grid">
+                <a class="role-card module-card" href="interview.html">
+                    <div>
+                        <div class="role-card-top">
+                            <div class="role-icon-box" style="background: linear-gradient(135deg, #3b82f6, #4f46e5);">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <h3 class="role-title">AI Interview Prep</h3>
+                        </div>
+                        <p class="role-desc">Practice with AI-curated role templates, voice input, and get real-time feedback scores.</p>
+                    </div>
+                    <div class="role-card-footer">
+                        <span class="start-link" style="color: #2563eb;">
+                            Start Practicing <i class="fa-solid fa-chevron-right"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <a class="role-card module-card" href="skills.html">
+                    <div>
+                        <div class="role-card-top">
+                            <div class="role-icon-box" style="background: linear-gradient(135deg, #10b981, #059669);">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <h3 class="role-title">Skill Roadmap</h3>
+                        </div>
+                        <p class="role-desc">Track and grow your technical stack with customized progression roadmaps.</p>
+                    </div>
+                    <div class="role-card-footer">
+                        <span class="start-link" style="color: #059669;">
+                            Build Roadmap <i class="fa-solid fa-chevron-right"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <a class="role-card module-card" href="jobs.html">
+                    <div>
+                        <div class="role-card-top">
+                            <div class="role-icon-box" style="background: linear-gradient(135deg, #0284c7, #0369a1);">
+                                <i class="fa-solid fa-magnifying-glass-dollar"></i>
+                            </div>
+                            <h3 class="role-title">Job Finder & Tracker</h3>
+                        </div>
+                        <p class="role-desc">Search curated openings, filter by location, and manage active applications.</p>
+                    </div>
+                    <div class="role-card-footer">
+                        <span class="start-link" style="color: #0284c7;">
+                            Find Openings <i class="fa-solid fa-chevron-right"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <a class="role-card module-card" href="learning.html">
+                    <div>
+                        <div class="role-card-top">
+                            <div class="role-icon-box" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="role-title">Learning Hub</h3>
+                        </div>
+                        <p class="role-desc">Follow structured courses, complete MCQs, and earn skill assessments.</p>
+                    </div>
+                    <div class="role-card-footer">
+                        <span class="start-link" style="color: #7c3aed;">
+                            View Catalog <i class="fa-solid fa-chevron-right"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <a class="role-card module-card" href="analytics.html">
+                    <div>
+                        <div class="role-card-top">
+                            <div class="role-icon-box" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3 class="role-title">Productivity Insights</h3>
+                        </div>
+                        <p class="role-desc">Review study trends, track focus streaks, and analyze weekly preparation metrics.</p>
+                    </div>
+                    <div class="role-card-footer">
+                        <span class="start-link" style="color: #d97706;">
+                            View Analytics <i class="fa-solid fa-chevron-right"></i>
+                        </span>
+                    </div>
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/socket.js"></script>
+</body>
+</html>

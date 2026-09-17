@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | Career Companion</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="auth-page" data-page="register">
+    <main class="auth-panel">
+        <h1>Create Your Account</h1>
+        <p>Register to access your career dashboard and tools.</p>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your full name" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="name@example.com" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Create a password" />
+        </div>
+        <button class="button" onclick="registerUser()">Register</button>
+        <p class="auth-note">Already have an account? <a href="login.html">Login</a></p>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

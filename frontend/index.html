@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Companion</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="hero-header">
+        <div class="hero-content">
+            <span class="tag">Career Companion</span>
+            <h1>Prepare for the Future with Smart Career Coaching</h1>
+            <p>Interview prep, skill tracking, job applications, productivity analytics, and career roadmap planning in one platform.</p>
+            <div class="hero-actions">
+                <a class="button" href="register.html">Get Started</a>
+                <a class="button secondary" href="login.html">Login</a>
+            </div>
+        </div>
+        <div class="hero-illustration">
+            <img src="https://cdn-icons-png.flaticon.com/512/5252/5252010.png" alt="Career illustration" />
+        </div>
+    </header>
+
+    <section class="feature-grid">
+        <article class="feature-card">
+            <h2>Interview Preparation</h2>
+            <p>Practice questions, save answers, and get feedback on your responses.</p>
+        </article>
+        <article class="feature-card">
+            <h2>Skill Roadmap</h2>
+            <p>Track your skills and improve with a structured career learning plan.</p>
+        </article>
+        <article class="feature-card">
+            <h2>Job Tracker</h2>
+            <p>Keep your applications organized and monitor interview status.</p>
+        </article>
+        <article class="feature-card">
+            <h2>Analytics</h2>
+            <p>Measure your study progress, focus streaks, and productivity trends.</p>
+        </article>
+    </section>
+
+    <footer class="page-footer">
+        <p>Career Companion Platform &mdash; Built with HTML, CSS, JavaScript, and Node.js.</p>
+    </footer>
+    <div id="eval-result" style="position:fixed;right:20px;bottom:20px;max-width:360px;background:#fff;padding:12px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.08);display:none;z-index:9999">
+        <div id="eval-score" style="font-weight:700;font-size:20px"></div>
+        <div id="eval-status" style="margin-top:6px;font-size:14px"></div>
+        <div id="eval-matched" style="margin-top:8px;font-size:13px"></div>
+        <div id="eval-missing" style="margin-top:6px;font-size:13px;color:#b33"></div>
+    </div>
+    <script src="js/app.js"></script>
+    <script>
+        (async function(){
+            const sample = await evaluateAnswer({
+                questionId: 'jweb-1',
+                userAnswer: 'CSS box model has content, padding, border and margin.',
+                required_keywords: ['content','padding','border','margin'],
+                optional_keywords: ['box-sizing','border-box'],
+                correct_answer: 'The CSS box model consists of content, padding, border, and margin. `box-sizing: border-box` includes padding and border within width and height.'
+            });
+            if(sample && sample.success){
+                const ev = sample.evaluation;
+                document.getElementById('eval-score').innerText = `Score: ${ev.score}/100`;
+                document.getElementById('eval-status').innerText = `Status: ${ev.status}`;
+                document.getElementById('eval-matched').innerText = `Matched: ${ev.matched_required.join(', ') || 'None'}`;
+                document.getElementById('eval-missing').innerText = `Missing: ${ev.missing_required.join(', ') || 'None'}`;
+                document.getElementById('eval-result').style.display = 'block';
+            }
+        })();
+    </script>
+</body>
+</html>

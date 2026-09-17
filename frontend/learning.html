@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Hub | Career Companion</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body data-page="learning">
+    <!-- Top Header Navigation -->
+    <header class="top-nav">
+        <div class="nav-brand">
+            <span class="logo">Career Companion</span>
+        </div>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="interview.html">Interview</a>
+            <a href="skills.html">Skills</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="learning.html" class="active">Learning</a>
+            <a href="analytics.html">Analytics</a>
+        </nav>
+        <div class="nav-right">
+            <div class="user-avatar" id="navAvatar">PB</div>
+            <button class="button secondary icon-btn" onclick="logout()" title="Log out">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="interview-page-wrapper">
+        <!-- Hero Header Banner -->
+        <section class="interview-hero-banner">
+            <div class="hero-content">
+                <h1>Learning Hub</h1>
+                <p>Find courses that move your career forward. Explore curated programs, filter by subject, and test your knowledge with assessments.</p>
+            </div>
+        </section>
+
+        <!-- Main Workspace Container -->
+        <div class="interview-container">
+            <!-- Catalog Search & Filters -->
+            <section class="card-panel-box">
+                <div class="catalog-topbar-wrapper">
+                    <div class="search-input-box">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="courseSearch" class="search-input-field" placeholder="Search courses, topics, or keywords..." oninput="updateCourseFilters()" />
+                    </div>
+                    <div id="courseCategoryFilters" class="filter-chips"></div>
+                </div>
+            </section>
+
+            <!-- Course Catalog Grid -->
+            <section class="path-header" style="margin-top: 32px;">
+                <h2>Course Catalog</h2>
+                <p>Curated learning tracks with hands-on modules and assessments</p>
+            </section>
+
+            <div id="courseGrid" class="templates-grid"></div>
+
+            <!-- Course Detail View Panel -->
+            <section id="courseDetailView" class="course-detail-overlay-panel hidden">
+                <button class="back-button" onclick="closeCourseDetail()">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Catalog
+                </button>
+                <div id="courseDetailContainer"></div>
+            </section>
+
+            <!-- Assessment View Panel -->
+            <section id="assessmentView" class="course-detail-overlay-panel hidden">
+                <button class="back-button" onclick="closeAssessmentView()">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Courses
+                </button>
+                <div id="assessmentContainer"></div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

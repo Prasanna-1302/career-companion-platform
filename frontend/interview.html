@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Interview Practice | Career Companion</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body data-page="interview">
+    <!-- Top Header Navigation -->
+    <header class="top-nav">
+        <div class="nav-brand">
+            <span class="logo">Career Companion</span>
+        </div>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="interview.html" class="active">AI Interview</a>
+            <a href="skills.html">Skills</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="learning.html">Learning</a>
+            <a href="analytics.html">Analytics</a>
+        </nav>
+        <div class="nav-right">
+            <div class="user-avatar" id="navAvatar">PB</div>
+            <button class="button secondary icon-btn" onclick="logout()" title="Log out">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="interview-page-wrapper">
+        <!-- Hero Header Banner -->
+        <section class="interview-hero-banner">
+            <div class="hero-content">
+                <h1>AI Interview Practice</h1>
+                <p>Practice with AI-curated questions and receive real-time feedback</p>
+            </div>
+        </section>
+
+        <!-- Main Workspace Container -->
+        <div class="interview-container">
+            <!-- Navigation Tab Bar Switcher -->
+            <div class="interview-tabs-bar">
+                <div class="tabs-switcher">
+                    <button class="tab-btn" id="tabAssigned" onclick="switchInterviewTab('assigned')">
+                        Assigned Interviews
+                    </button>
+                    <button class="tab-btn active" id="tabCreate" onclick="switchInterviewTab('create')">
+                        Create Interview
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab 1: Create Interview View -->
+            <div id="createInterviewView" class="tab-view active">
+                <section class="path-header">
+                    <h2>Choose Your Interview Path</h2>
+                    <p>Select a role template or create your own custom interview</p>
+                </section>
+
+                <!-- Create Custom Job Description Banner Card -->
+                <section class="custom-jd-banner" onclick="openCustomJdModal()">
+                    <div class="banner-icon-box">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="banner-text">
+                        <h3>Create Custom Job Description</h3>
+                        <p>Tailor your interview to any role</p>
+                    </div>
+                    <div class="banner-accent-bg"></div>
+                </section>
+
+                <!-- Or Choose a Template Divider -->
+                <div class="divider-pill-container">
+                    <div class="divider-line"></div>
+                    <span class="pill-label">OR CHOOSE A TEMPLATE</span>
+                    <div class="divider-line"></div>
+                </div>
+
+                <!-- Template Grid Cards -->
+                <section class="templates-grid" id="templateGrid">
+                    <!-- Populated dynamically by app.js -->
+                </section>
+            </div>
+
+            <!-- Tab 2: Assigned Interviews View -->
+            <div id="assignedInterviewView" class="tab-view hidden">
+                <section class="path-header">
+                    <h2>Your Assigned & Saved Interviews</h2>
+                    <p>Track your completed sessions, review feedback, or resume pending interviews</p>
+                </section>
+
+                <div class="assigned-interviews-container" id="assignedList">
+                    <!-- Populated dynamically by app.js -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom Job Description Modal -->
+    <div class="modal-overlay hidden" id="customJdModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Create Custom Job Description</h2>
+                <button class="modal-close-btn" onclick="closeCustomJdModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="customJdForm" onsubmit="event.preventDefault(); submitCustomJdForm();">
+                    <div class="form-group">
+                        <label for="jdJobTitle">Job Title / Role</label>
+                        <input type="text" id="jdJobTitle" placeholder="e.g. Senior Full Stack Engineer" required />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="jdExpLevel">Experience Level</label>
+                            <select id="jdExpLevel">
+                                <option value="Entry / Junior">Entry / Junior</option>
+                                <option value="Mid Level" selected>Mid Level</option>
+                                <option value="Senior / Lead">Senior / Lead</option>
+                                <option value="Manager / Director">Manager / Director</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="jdTechStack">Key Tech Stack / Skills</label>
+                            <input type="text" id="jdTechStack" placeholder="e.g. React, Node.js, PostgreSQL, AWS" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jdText">Job Description / Requirements (Optional)</label>
+                        <textarea id="jdText" rows="4" placeholder="Paste the job description or bullet points here to get super tailored questions..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="button secondary" onclick="closeCustomJdModal()">Cancel</button>
+                        <button type="submit" class="button primary">
+                            <i class="fa-solid fa-bolt"></i> Generate AI Interview
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Interactive AI Interview Room Modal -->
+    <div class="modal-overlay hidden" id="interviewRoomModal">
+        <div class="interview-room-container">
+            <!-- Room Header -->
+            <div class="room-header">
+                <div class="room-role-info">
+                    <span class="role-badge" id="roomRoleBadge">Software Engineer</span>
+                    <h2 id="roomRoleTitle">Software Engineer AI Interview</h2>
+                </div>
+                <div class="room-controls">
+                    <span class="question-progress-counter" id="roomProgressCounter">Question 1 of 4</span>
+                    <button class="modal-close-btn" onclick="closeInterviewRoom()">&times;</button>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="room-progress-bar">
+                <div class="room-progress-fill" id="roomProgressFill" style="width: 25%;"></div>
+            </div>
+
+            <!-- Room Content Body -->
+            <div class="room-body">
+                <!-- Question Card -->
+                <div class="ai-question-card">
+                    <div class="ai-avatar-badge">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="question-content">
+                        <div class="question-header-row">
+                            <h3>AI Interviewer Question</h3>
+                            <button class="tts-button" onclick="speakCurrentQuestion()" title="Listen to Question Audio">
+                                <i class="fa-solid fa-volume-high"></i> Listen
+                            </button>
+                        </div>
+                        <p class="question-text-display" id="roomQuestionText">
+                            How do you handle system architecture decisions for high-concurrency systems?
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Answer Card -->
+                <div class="user-answer-card">
+                    <div class="answer-card-header">
+                        <h3><i class="fa-solid fa-pen-to-square"></i> Your Answer</h3>
+                        <div class="input-mode-actions">
+                            <button type="button" class="voice-rec-btn" id="voiceRecBtn" onclick="toggleVoiceRecording()">
+                                <i class="fa-solid fa-microphone"></i> <span id="voiceRecLabel">Voice Answer</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Voice recording indicator wave -->
+                    <div class="voice-wave-indicator hidden" id="voiceWaveIndicator">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <span class="wave-text">Listening... Speak your answer now</span>
+                    </div>
+
+                    <textarea id="roomAnswerInput" rows="5" placeholder="Type your answer here or click 'Voice Answer' to speak..."></textarea>
+
+                    <div class="answer-action-buttons">
+                        <button type="button" class="button secondary" onclick="skipInterviewQuestion()">Skip Question</button>
+                        <button type="button" class="button primary" id="btnSubmitAnswer" onclick="submitRoomAnswer()">
+                            <i class="fa-solid fa-paper-plane"></i> Submit Answer for Feedback
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feedback Analysis Card -->
+                <div class="feedback-analysis-card hidden" id="roomFeedbackCard">
+                    <div class="feedback-header">
+                        <div class="score-badge-circle" id="roomScoreBadge">88/100</div>
+                        <div>
+                            <h3>AI Real-time Feedback & Analysis</h3>
+                            <p class="feedback-subtitle">Evaluation based on clarity, technical accuracy, and completeness</p>
+                        </div>
+                    </div>
+
+                    <div class="feedback-lists-grid">
+                        <div class="feedback-column strengths-col">
+                            <h4><i class="fa-solid fa-circle-check"></i> Key Strengths</h4>
+                            <ul id="roomStrengthsList"></ul>
+                        </div>
+                        <div class="feedback-column improvements-col">
+                            <h4><i class="fa-solid fa-circle-exclamation"></i> Suggested Improvements</h4>
+                            <ul id="roomImprovementsList"></ul>
+                        </div>
+                    </div>
+
+                    <div class="sample-answer-box">
+                        <h4><i class="fa-solid fa-lightbulb"></i> Ideal Answer Key Points:</h4>
+                        <p id="roomSampleAnswerText"></p>
+                    </div>
+
+                    <div class="next-question-footer">
+                        <button type="button" class="button primary large" onclick="nextInterviewQuestion()">
+                            Next Question <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Summary Report Modal -->
+    <div class="modal-overlay hidden" id="interviewSummaryModal">
+        <div class="summary-modal-card">
+            <div class="summary-modal-header">
+                <h2><i class="fa-solid fa-trophy"></i> Interview Performance Summary</h2>
+                <button class="modal-close-btn" onclick="closeSummaryModal()">&times;</button>
+            </div>
+            <div class="summary-modal-body">
+                <div class="summary-score-hero">
+                    <div class="big-score-ring">
+                        <span class="score-num" id="summaryFinalScore">88</span>
+                        <span class="score-label">Overall Score</span>
+                    </div>
+                    <div class="summary-meta">
+                        <h3 id="summaryRoleTitle">Software Engineer</h3>
+                        <p id="summaryCompletionText">Completed 4 out of 4 questions</p>
+                        <span class="status-badge-success"><i class="fa-solid fa-check"></i> Session Saved to Assigned Interviews</span>
+                    </div>
+                </div>
+
+                <div class="summary-questions-breakdown" id="summaryBreakdownList">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <div class="summary-modal-footer">
+                    <button class="button secondary" onclick="closeSummaryModal()">Back to Templates</button>
+                    <button class="button primary" onclick="switchInterviewTab('assigned'); closeSummaryModal();">
+                        View Assigned Interviews
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+<script src="js/socket.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
